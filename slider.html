@@ -1,0 +1,43 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Slider With JQuery</title>
+    <style>
+        body {
+            width: 70%;
+            margin: 30px auto;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .container div {
+            display: none;
+        }
+
+        .container img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div style="display: block;">
+            <img src="images/1.jpg">
+        </div>
+        <div><img src="images/2.jpg"></div>
+        <div><img src="images/3.jpg"></div>
+        <div><img src="images/4.jpg"></div>
+    </div>
+    <button id="next">Next</button>
+    <button id="prev">Prev</button>
+
+    <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

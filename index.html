@@ -1,0 +1,129 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEARNING JQUERY</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <style>
+        .bold {
+            font-size: large;
+            font-style: italic;
+            font-weight: bolder;
+        }
+
+        .new {
+            font-size: 18px;
+            font-weight: bolder;
+            background-color: blue;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Belajar JQUERY</h1>
+    <div id="box1">Box 1</div>
+    <div id="test">
+        <div class="boxes">Baris Pertama</div>
+        <div class="boxes" id="chosen_one">Baris Kedua</div>
+        <div class="boxes">Baris Ketiga</div>
+    </div>
+    <form action="">
+        <input type="text" id="inputText">
+        <button type="submit">Submit</button>
+    </form>
+
+    <button id="btn_show">Show</button>
+    <button id="btn_hide">Hide</button>
+    <button id="btn_toggle">Toggle</button>
+    <button id="btn_stop">Stop</button>
+</body>
+
+<script>
+    //memastikan file sudah diload dgn sempurna
+    $(document).ready(function () {
+        //selector dan ubah property css, jika ingin ubah dan tambah property2 css use {} ex: fontSize : 14px
+        $('h1').css('color', 'blue');
+        $('#box1').css('color', 'red');
+        $('.boxes').css('color', 'green');
+        $('.boxes:first').css('color', 'brown');
+        $('.boxes:last').css('color', 'gray');
+        //eq berdasarkan urutan dari 0
+        $('.boxes:eq(2)').css('color', 'gold');
+
+        //event2 click
+        //jika ingin mengubah/add class baru use fungsi addClass('namaclass');
+        // -- menghapus class dgn fungsi removeClass //atau use toggleClass for both
+        $('h1').click(function () {
+            //yang akan terjadi ketika diklik
+            $('h1').css('color', 'red');
+            // $('h1').addClass('new');
+        });
+        $('h1').mouseenter(function () {
+            $('h1').css('color', 'yellow');
+        });
+        $('h1').mouseleave(function () {
+            //yang akan terjadi ketika diklik
+            $('h1').css('color', 'green');
+        });
+        //elemen sendiri = this
+        $('.boxes').mouseenter(function () {
+            $(this).css('color', 'yellow');
+        });
+
+        //get dan set , fungsi submit
+        $('form').submit(function () {
+            //ambil value input dan masukan ke var tulisan
+            var tulisan = $('#inputText').val();
+            //ubah h1 jadi text sesuai dgn var tulisan
+            //beda html utk dgn classnya, text utk valuenya saja
+            $('#test').html("<div class='bold'>" + tulisan + "</div>");
+            //mencegah sifat
+            event.preventDefault();
+        });
+
+        //menambah dgn fungsi append (diakhir), prepend (diawal). after-before taro nya di luar element
+        //menghapus dgn fungsi remove menghapus element, empty menghapus isi dari elemen
+        $('#test').append("<div class='bold'>bismillah</div>");
+        // $('#test').remove();
+
+        //mengambil ukuran use fungsi width = konten, innerwidth = konten + padding, outerwidth = konten + padding + border // add parameter true if u want count the margin
+        // dan untuk merubah ukuran bisa dgn .height(int).width(int)
+
+        //show & hide using click event and fungsi show hide, u can add fadeIn fadeOut fadeToggle dan bbisa kasih time di parameter (2000 = 2second) , ada callback
+        $('#btn_hide').click(function () {
+            $('#test').fadeOut(1500, showNotif);
+        });
+
+        function showNotif() {
+            alert('selesai!');
+        }
+
+        $('#btn_show').click(function () {
+            $('#test').show();
+        });
+
+        $('#btn_toggle').click(function () {
+            $('#test').toggle();
+        });
+
+        //stop animasi
+        $('#btn_stop').click(function () {
+            $('#test').stop();
+        });
+
+        //callback, jalankan funsi seteah funsi itu dijalankan dan bisa disimpan di variable, exp di btn_hide
+        //chaining menambahkan funsgi baru spt .fadeIn().fadeOut().seterusnya()
+        //traversing sama seperti select tpi dgn hubugngan elemen lainnya
+        //using filter = yang spesifik. not = yang bukan/tidak
+        // $('.boxes').filter('#chosen_one').css('font-size', '30px');
+        //sibling = mengambil elemen yg ada di parent kecuali dia
+        //next = mengambil elemen setelahnya, nextAll setelah semaunya, nextUntil('id/.') next bisa diganti previous
+        //children = anak2 elemen, find = cari di anak elemen, paret = cuma parent elemen, parents = semua parent elemen
+        $('#test').children('boxes').css('background', 'green');
+    });
+</script>
+
+</html>
